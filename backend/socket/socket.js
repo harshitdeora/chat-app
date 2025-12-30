@@ -5,9 +5,11 @@ import express from "express";
 const app = express();
 const server = http.createServer(app);
 
+console.log("🔥 Socket.IO server file loaded");
+
 const io = new Server(server, {
 	cors: {
-		origin: ["http://localhost:3000"],
+		origin: "http://localhost:3000",
 		methods: ["GET", "POST"],
 		credentials: true,
 	},
@@ -20,7 +22,7 @@ export const getReceiverSocketId = (receiverId) => {
 };
 
 io.on("connection", (socket) => {
-	console.log("User connected:", socket.id);
+	console.log("🔥 SOCKET CONNECTED:", socket.id);
 
 	const userId = socket.handshake.query.userId;
 
@@ -31,7 +33,7 @@ io.on("connection", (socket) => {
 	io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
 	socket.on("disconnect", () => {
-		console.log("User disconnected:", socket.id);
+		console.log("🔥 SOCKET DISCONNECTED:", socket.id);
 
 		if (userId && userId !== "undefined") {
 			delete userSocketMap[userId];
