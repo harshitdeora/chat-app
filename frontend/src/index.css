@@ -2,58 +2,339 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===============================
+   BASE
+   =============================== */
+
+html,
 body {
-	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/bg.png");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background: #000;
+	overflow-x: hidden;
+	color: white;
 }
 
-/* dark mode looking scrollbar */
-::-webkit-scrollbar {
-	width: 8px;
+/* ===============================
+   FLOATING BACKGROUND SHAPES
+   =============================== */
+
+.circles {
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	overflow: hidden;
 }
 
-::-webkit-scrollbar-track {
-	background: #555;
+.circles li {
+	position: absolute;
+	list-style: none;
+	bottom: -150px;
+	animation: floatUp linear infinite;
 }
 
-::-webkit-scrollbar-thumb {
-	background: #121212;
-	border-radius: 5px;
+/* ===============================
+   BRIGHT COLORED SHAPES + GLOW
+   =============================== */
+
+/* NEON CYAN CIRCLE */
+.circles li:nth-child(1) {
+	left: 10%;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background: rgba(0, 255, 255, 0.85);
+	box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+	animation-duration: 20s;
 }
 
-::-webkit-scrollbar-thumb:hover {
-	background: #242424;
+/* MAGENTA DOT */
+.circles li:nth-child(2) {
+	left: 25%;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: rgba(255, 0, 255, 0.85);
+	box-shadow: 0 0 18px rgba(255, 0, 255, 0.9);
+	animation-duration: 28s;
 }
 
-/* SHAKE ANIMATION ON HORIZONTAL DIRECTION */
-.shake {
-	animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.2s both;
-	transform: translate3d(0, 0, 0);
-	backface-visibility: hidden;
-	perspective: 1000px;
+/* ELECTRIC BLUE SQUARE */
+.circles li:nth-child(3) {
+	left: 40%;
+	width: 60px;
+	height: 60px;
+	border-radius: 8px;
+	background: rgba(60, 140, 255, 0.85);
+	box-shadow: 0 0 22px rgba(60, 140, 255, 0.9);
+	animation-duration: 22s;
 }
 
-@keyframes shake {
-	10%,
-	90% {
-		transform: translate3d(-1px, 0, 0);
+/* NEON GREEN SQUARE */
+.circles li:nth-child(4) {
+	left: 55%;
+	width: 20px;
+	height: 20px;
+	border-radius: 4px;
+	background: rgba(0, 255, 140, 0.85);
+	box-shadow: 0 0 14px rgba(0, 255, 140, 0.9);
+	animation-duration: 30s;
+}
+
+/* ORANGE GLOW CIRCLE */
+.circles li:nth-child(5) {
+	left: 70%;
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	background: rgba(255, 140, 0, 0.85);
+	box-shadow: 0 0 28px rgba(255, 140, 0, 0.9);
+	animation-duration: 26s;
+}
+
+/* PURPLE CIRCLE */
+.circles li:nth-child(6) {
+	left: 85%;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: rgba(170, 90, 255, 0.85);
+	box-shadow: 0 0 20px rgba(170, 90, 255, 0.9);
+	animation-duration: 34s;
+}
+
+/* PINK DIAMOND */
+.circles li:nth-child(7) {
+	left: 15%;
+	width: 50px;
+	height: 50px;
+	border-radius: 6px;
+	background: rgba(255, 80, 160, 0.85);
+	box-shadow: 0 0 22px rgba(255, 80, 160, 0.9);
+	transform: rotate(45deg);
+	animation-duration: 38s;
+}
+
+/* CYAN RING */
+.circles li:nth-child(8) {
+	left: 35%;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	background: transparent;
+	border: 3px solid rgba(0, 255, 255, 0.9);
+	box-shadow: 0 0 24px rgba(0, 255, 255, 0.9);
+	animation-duration: 42s;
+}
+
+/* WHITE STAR DOT */
+.circles li:nth-child(9) {
+	left: 60%;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 1);
+	box-shadow: 0 0 12px rgba(255, 255, 255, 1);
+	animation-duration: 45s;
+}
+
+/* BLUE LASER LINE */
+.circles li:nth-child(10) {
+	left: 90%;
+	width: 3px;
+	height: 70px;
+	border-radius: 2px;
+	background: rgba(80, 160, 255, 0.9);
+	box-shadow: 0 0 20px rgba(80, 160, 255, 0.9);
+	animation-duration: 50s;
+}
+
+/* ===============================
+   ANIMATION
+   =============================== */
+
+@keyframes floatUp {
+	0% {
+		transform: translateY(0) rotate(0deg);
+		opacity: 0;
 	}
-
-	20%,
-	80% {
-		transform: translate3d(2px, 0, 0);
+	25% {
+		opacity: 1;
 	}
-
-	30%,
-	50%,
-	70% {
-		transform: translate3d(-4px, 0, 0);
+	100% {
+		transform: translateY(-130vh) rotate(720deg);
+		opacity: 0;
 	}
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-	40%,
-	60% {
-		transform: translate3d(4px, 0, 0);
+/* ===============================
+   BASE
+   =============================== */
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background: #000;
+	overflow-x: hidden;
+	color: white;
+}
+
+/* ===============================
+   FLOATING BACKGROUND SHAPES
+   =============================== */
+
+.circles {
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	overflow: hidden;
+}
+
+.circles li {
+	position: absolute;
+	list-style: none;
+	bottom: -150px;
+	animation: floatUp linear infinite;
+}
+
+/* ===============================
+   BRIGHT COLORED SHAPES + GLOW
+   =============================== */
+
+/* NEON CYAN CIRCLE */
+.circles li:nth-child(1) {
+	left: 10%;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background: rgba(0, 255, 255, 0.85);
+	box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+	animation-duration: 20s;
+}
+
+/* MAGENTA DOT */
+.circles li:nth-child(2) {
+	left: 25%;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: rgba(255, 0, 255, 0.85);
+	box-shadow: 0 0 18px rgba(255, 0, 255, 0.9);
+	animation-duration: 28s;
+}
+
+/* ELECTRIC BLUE SQUARE */
+.circles li:nth-child(3) {
+	left: 40%;
+	width: 60px;
+	height: 60px;
+	border-radius: 8px;
+	background: rgba(60, 140, 255, 0.85);
+	box-shadow: 0 0 22px rgba(60, 140, 255, 0.9);
+	animation-duration: 22s;
+}
+
+/* NEON GREEN SQUARE */
+.circles li:nth-child(4) {
+	left: 55%;
+	width: 20px;
+	height: 20px;
+	border-radius: 4px;
+	background: rgba(0, 255, 140, 0.85);
+	box-shadow: 0 0 14px rgba(0, 255, 140, 0.9);
+	animation-duration: 30s;
+}
+
+/* ORANGE GLOW CIRCLE */
+.circles li:nth-child(5) {
+	left: 70%;
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	background: rgba(255, 140, 0, 0.85);
+	box-shadow: 0 0 28px rgba(255, 140, 0, 0.9);
+	animation-duration: 26s;
+}
+
+/* PURPLE CIRCLE */
+.circles li:nth-child(6) {
+	left: 85%;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: rgba(170, 90, 255, 0.85);
+	box-shadow: 0 0 20px rgba(170, 90, 255, 0.9);
+	animation-duration: 34s;
+}
+
+/* PINK DIAMOND */
+.circles li:nth-child(7) {
+	left: 15%;
+	width: 50px;
+	height: 50px;
+	border-radius: 6px;
+	background: rgba(255, 80, 160, 0.85);
+	box-shadow: 0 0 22px rgba(255, 80, 160, 0.9);
+	transform: rotate(45deg);
+	animation-duration: 38s;
+}
+
+/* CYAN RING */
+.circles li:nth-child(8) {
+	left: 35%;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	background: transparent;
+	border: 3px solid rgba(0, 255, 255, 0.9);
+	box-shadow: 0 0 24px rgba(0, 255, 255, 0.9);
+	animation-duration: 42s;
+}
+
+/* WHITE STAR DOT */
+.circles li:nth-child(9) {
+	left: 60%;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 1);
+	box-shadow: 0 0 12px rgba(255, 255, 255, 1);
+	animation-duration: 45s;
+}
+
+/* BLUE LASER LINE */
+.circles li:nth-child(10) {
+	left: 90%;
+	width: 3px;
+	height: 70px;
+	border-radius: 2px;
+	background: rgba(80, 160, 255, 0.9);
+	box-shadow: 0 0 20px rgba(80, 160, 255, 0.9);
+	animation-duration: 50s;
+}
+
+/* ===============================
+   ANIMATION
+   =============================== */
+
+@keyframes floatUp {
+	0% {
+		transform: translateY(0) rotate(0deg);
+		opacity: 0;
+	}
+	25% {
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(-130vh) rotate(720deg);
+		opacity: 0;
 	}
 }
