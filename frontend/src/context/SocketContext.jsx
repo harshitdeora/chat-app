@@ -19,7 +19,7 @@ export const SocketContextProvider = ({ children }) => {
 
 		console.log("🟢 Frontend attempting socket connection...");
 
-		const socketInstance = io("http://localhost:5000", {
+		const socketInstance = io("https://chat-app-8gqa.onrender.com", {
 			withCredentials: true,
 			query: {
 				userId: authUser._id,
