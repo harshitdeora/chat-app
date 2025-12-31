@@ -16,7 +16,6 @@ dotenv.config();
 const __dirname = path.resolve();
 const PORT = process.env.PORT || 5000;
 
-// CORS (same origin in production)
 app.use(
   cors({
     origin: process.env.CLIENT_URL || true,
@@ -32,11 +31,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
-// 🔥 SERVE FRONTEND (VERY IMPORTANT)
+// Serve frontend
 app.use(express.static(path.join(__dirname, "frontend", "dist")));
 
-// SPA fallback
-app.get("*", (req, res) => {
+// ✅ FIXED SPA fallback (Node 22 compatible)
+app.get(/.*/, (req, res) => {
   res.sendFile(
     path.join(__dirname, "frontend", "dist", "index.html")
   );
